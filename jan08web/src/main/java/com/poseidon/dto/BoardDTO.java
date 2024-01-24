@@ -71,7 +71,7 @@ public class BoardDTO {
 	}
 
 	public String getIp() {
-		return Util.ipMasking(ip);
+		return this.ip;
 	}
 
 	public void setIp(String ip) {

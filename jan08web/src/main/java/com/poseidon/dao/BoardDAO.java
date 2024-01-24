@@ -66,7 +66,7 @@ public class BoardDAO extends AbstractDAO {
 				dto.setDate(rs.getString("board_date"));
 				dto.setCount(rs.getInt("board_count"));
 				dto.setMid(rs.getString("mid"));
-				dto.setIp(rs.getString("board_ip"));
+				dto.setIp(Util.ipMasking(rs.getString("board_ip")));
 			}
 
 		} catch (SQLException e) {
@@ -131,6 +131,7 @@ public class BoardDAO extends AbstractDAO {
 			pstmt.setString(2, dto.getContent());
 			pstmt.setString(3, dto.getMid());// 수정완
 			pstmt.setString(4, dto.getIp());// 아이피를 추가했습니다.
+			
 			result = pstmt.executeUpdate();// 영향받은 행을 result에 저장합니다.
 		} catch (SQLException e) {
 			e.printStackTrace();

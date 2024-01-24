@@ -23,16 +23,14 @@ $(document).ready(function(){
 	
 	$(".commentEdit").click(function(){
 		if(confirm('수정하시겠습니까?')){
-			//필요한 값 cno잡기 / 수정한 내용 + 로그인 ==== 서블릿에서 정리
 			let cno = $(this).siblings(".cno").val();
-			let comment = $(this).parents(".chead").next();//변경
+			let comment = $(this).parents(".chead").next();
 			$(this).prev().hide();
 			$(this).hide();
 			comment.css('height','110');
 			comment.css('padding-top','10px');
 			comment.css('backgroundColor','#c1c1c1');
 			let commentChange = comment.html().replaceAll("<br>", "\r\n");
-			//alert(cno + " : " + comment.html());
 			let recommentBox = '<div class="recommentBox">';
 			recommentBox += '<form action="./cedit" method="post">';
 			recommentBox += '<textarea class="commentcontent" name="comment">' + commentChange + '</textarea>';
