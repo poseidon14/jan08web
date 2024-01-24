@@ -25,8 +25,18 @@ $(document).ready(function(){
 		if(confirm('수정하시겠습니까?')){
 			//필요한 값 cno잡기 / 수정한 내용 + 로그인 ==== 서블릿에서 정리
 			let cno = $(this).siblings(".cno").val();
-			let comment = $(this).parents(".chead").next().text();
-			alert(cno + " : " + comment);
+			let comment = $(this).parents(".chead").next();//변경
+			let commentChange = 
+			//alert(cno + " : " + comment.html());
+			let recommentBox = '<div class="recommentBox">';
+			recommentBox += '<form action="./cedit" method="post">';
+			recommentBox += '<textarea id="" name="comment">' + commentChange + '</textarea>';
+			recommentBox += '<input type="hidden" name="cno" value="' + cno + '">';
+			recommentBox += '<button type="submit">댓글 수정</button>';
+			recommentBox += '</form></div>';
+			
+			comment.html(recommentBox);
+			
 		}
 	});
 	
