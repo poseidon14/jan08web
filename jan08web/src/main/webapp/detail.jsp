@@ -55,6 +55,8 @@ $(document).ready(function(){
 					if(result == 1){
 						$(this).parent(".recommentBox").remove();
 						comment.css('backgroundColor','#ffffff');
+						comment.css('min-height','100px');
+						comment.css('height','auto');//시호님이 찾아주셨어요...
 						comment.html(recomment.replace(/(?:\r\n|\r|\n)/g, '<br>'));
 						$(".commentDelete").show();
 						$(".commentEdit").show();
