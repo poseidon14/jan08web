@@ -30,16 +30,14 @@ $(document).ready(function(){
 			comment.css('height','110');
 			comment.css('padding-top','10px');
 			comment.css('backgroundColor','#c1c1c1');
-			let commentChange = comment.html().replaceAll("<br>", "\r\n");
 			let recommentBox = '<div class="recommentBox">';
-			recommentBox += '<textarea class="commentcontent">' + commentChange + '</textarea>';
+			recommentBox += '<textarea class="commentcontent">' + (comment.html().replaceAll("<br>", "\r\n")) + '</textarea>';
 			recommentBox += '<input type="hidden" name="cno" value="' + cno + '">';
 			recommentBox += '<button class="comment-btn">댓글 수정</button>';
 			recommentBox += '</div>';
 			comment.html(recommentBox);
 		}
 	});
-	
 	//댓글수정  .comment-btn버튼 눌렀을 때 .cno값, .commentcontent값 가져오는 명령 만들기
 	// 2024-01-25
 	$(document).on('click',".comment-btn", function (){
@@ -54,16 +52,14 @@ $(document).ready(function(){
 				dataType : 'text',
 				data : {'cno': cno, 'comment': recomment},
 				success : function(result){
-					//alert('통신 성공 : ' + result);
 					if(result == 1){
-						//수정된 데이터를 화면에 보여주면 되요.
 						$(this).parent(".recommentBox").remove();
 						comment.css('backgroundColor','#ffffff');
-						recomment = recomment.replace(/(?:\r\n|\r|\n)/g, '<br>');
-						comment.html(recomment);
+						comment.html(recomment.replace(/(?:\r\n|\r|\n)/g, '<br>'));
+						$(".commentDelete").show();
+						$(".commentEdit").show();
 					} else {
 						alert("문제가 발생했습니다. 화면을 갱신합니다.");
-						//location.href='./detail?page=${param.page}&no=${param.no}';
 						location.href='./detail?page=${param.page}&no=${detail.no}';
 					}
 				},
@@ -107,9 +103,6 @@ $(document).ready(function(){
 				}
 			});//end ajax
 		}
-		
-		
-		
 	});
 	
 	
@@ -121,7 +114,7 @@ $(document).ready(function(){
 		$(".comment-write").slideToggle('slow');
 	});
 	
-	+
+	
 	$("#comment-btn").click(function(){
 		let content = $("#commentcontent").val();
 		let bno = ${detail.no };
@@ -145,10 +138,7 @@ $(document).ready(function(){
 	//댓글쓰기 창에 쓸 수 있는 글자 표시해주고 넘어가면 더이상 입력 불가로 바꾸기
 	$("#commentcontent").keyup(function(){
         let text = $(this).val();
-        if(text.length > 100){
-           alert("100자 넘었어요.");
-           $(this).val(  text.substr(0, 100)   );   
-        }
+        if(text.length > 100){alert("100자 넘었어요.");$(this).val(text.substr(0, 100));}
         $("#comment-btn").text("글쓰기 " + text.length +  "/100");
      });
 	
@@ -173,7 +163,7 @@ $(document).ready(function(){
 									<img alt="수정" src="./img/edit.png" onclick="update()">
 								</c:if>
 							</div>
-							<div class="detailCOUNT">${detail.ip }/ ${detail.count }</div>
+							<div class="detailCOUNT">${detail.ip } / ${detail.count }</div>
 						</div>
 						<div class="detailCONTENT">${detail.content }</div>
 					</div>
@@ -199,7 +189,7 @@ $(document).ready(function(){
 											<img alt="수정" src="./img/edit.png" class="commentEdit">
 										</c:if>
 									</div>
-									<div class="cdate">${co.ip}/ ${co.cdate }</div>
+									<div class="cdate">${co.ip} / ${co.cdate }</div>
 								</div>
 								<div class="ccomment">${co.comment }</div>
 							</div>
