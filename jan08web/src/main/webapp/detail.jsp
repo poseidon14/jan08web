@@ -43,20 +43,36 @@ $(document).ready(function(){
 	//댓글수정  .comment-btn버튼 눌렀을 때 .cno값, .commentcontent값 가져오는 명령 만들기
 	// 2024-01-25
 	$(document).on('click',".comment-btn", function (){
-		let cno = $(this).prev().val();
-		let recomment = $('.commentcontent').val();
-		$.ajax({
-			url : './recomment',
-			type : 'post',
-			dataType : 'text',
-			data : {'cno': cno, 'comment': recomment},
-			success : function(result){
-				alert('통신 성공 : ' + result);
-			},
-			error : function(error){
-				alert('문제가 발생했습니다. : ' + error);
-			}
-		});
+		if(confirm('수정하시겠습니까?')){
+			let cno = $(this).prev().val();
+			let recomment = $('.commentcontent').val();
+			let comment = $(this).parents(".ccomment");//댓글 위치
+			
+			$.ajax({
+				url : './recomment',
+				type : 'post',
+				dataType : 'text',
+				data : {'cno': cno, 'comment': recomment},
+				success : function(result){
+					//alert('통신 성공 : ' + result);
+					if(result == 1){
+						//수정된 데이터를 화면에 보여주면 되요.
+						$(this).parent(".recommentBox").remove();
+						comment.css('backgroundColor','#ffffff');
+						//recomment = recomment.replaceAll("<br>", "\r\n");
+						comment.text(recomment);
+					} else {
+						alert("문제가 발생했습니다. 화면을 갱신합니다.");
+						//location.href='./detail?page=${param.page}&no=${param.no}';
+						location.href='./detail?page=${param.page}&no=${detail.no}';
+					}
+				},
+				error : function(error){
+					alert('문제가 발생했습니다. : ' + error);
+				}
+			});
+		}
+		
 	});
 	
 	//댓글 삭제 버튼을 눌렀습니다.
