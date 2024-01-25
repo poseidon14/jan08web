@@ -47,8 +47,7 @@ public class CommentDel extends HttpServlet {
 
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		int result = 0;
 		if (session.getAttribute("mid") != null && Util.intCheck2(request.getParameter("no"))) {

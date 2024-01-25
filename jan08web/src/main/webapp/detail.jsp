@@ -32,19 +32,33 @@ $(document).ready(function(){
 			comment.css('backgroundColor','#c1c1c1');
 			let commentChange = comment.html().replaceAll("<br>", "\r\n");
 			let recommentBox = '<div class="recommentBox">';
-			recommentBox += '<form action="./cedit" method="post">';
-			recommentBox += '<textarea class="commentcontent" name="comment">' + commentChange + '</textarea>';
+			recommentBox += '<textarea class="commentcontent">' + commentChange + '</textarea>';
 			recommentBox += '<input type="hidden" name="cno" value="' + cno + '">';
-			recommentBox += '<button class="comment-btn" type="submit">댓글 수정</button>';
-			recommentBox += '</form></div>';
-			
+			recommentBox += '<button class="comment-btn">댓글 수정</button>';
+			recommentBox += '</div>';
 			comment.html(recommentBox);
-			
 		}
 	});
 	
-	
-	
+	//댓글수정  .comment-btn버튼 눌렀을 때 .cno값, .commentcontent값 가져오는 명령 만들기
+	// 2024-01-25
+	$(document).on('click',".comment-btn", function (){
+		let cno = $(this).prev().val();
+		let recomment = $('.commentcontent').val();
+		//alert(cno + " : " + recomment);
+		$.ajax({
+			url : './recomment',
+			type : 'post',
+			dataType : 'text',
+			data : {'cno': cno, 'comment': recomment},
+			success : function(result){
+				alert('통신 성공 : ' + result);
+			},
+			error : function(error){
+				alert('문제가 발생했습니다. : ' + error);
+			}
+		});
+	});
 	
 	//댓글 삭제 버튼을 눌렀습니다.
 	$(".commentDelete").click(function(){
