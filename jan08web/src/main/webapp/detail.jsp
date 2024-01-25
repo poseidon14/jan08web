@@ -59,8 +59,8 @@ $(document).ready(function(){
 						//수정된 데이터를 화면에 보여주면 되요.
 						$(this).parent(".recommentBox").remove();
 						comment.css('backgroundColor','#ffffff');
-						//recomment = recomment.replaceAll("<br>", "\r\n");
-						comment.text(recomment);
+						recomment = recomment.replace(/(?:\r\n|\r|\n)/g, '<br>');
+						comment.html(recomment);
 					} else {
 						alert("문제가 발생했습니다. 화면을 갱신합니다.");
 						//location.href='./detail?page=${param.page}&no=${param.no}';
