@@ -34,7 +34,7 @@ public class ReComment extends HttpServlet {
 			CommentDTO dto = new CommentDTO();
 			dto.setMid((String) session.getAttribute("mid"));
 			dto.setCno(Util.str2Int2(request.getParameter("cno")));
-			dto.setComment(request.getParameter("comment"));
+			dto.setComment(Util.addBR(request.getParameter("comment")));
 
 			CommentDAO dao = new CommentDAO();
 			result = dao.commentUpdate(dto);

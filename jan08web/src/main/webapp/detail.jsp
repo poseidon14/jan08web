@@ -45,7 +45,6 @@ $(document).ready(function(){
 	$(document).on('click',".comment-btn", function (){
 		let cno = $(this).prev().val();
 		let recomment = $('.commentcontent').val();
-		//alert(cno + " : " + recomment);
 		$.ajax({
 			url : './recomment',
 			type : 'post',
