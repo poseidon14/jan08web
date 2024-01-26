@@ -31,6 +31,14 @@ public class Members extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println(request.getParameter("mno"));
+		System.out.println(request.getParameter("grade"));
+		
+		//db에 변경
+		
+		//페이지 이동
+		response.sendRedirect("./members");
+		
 	}
 
 }
