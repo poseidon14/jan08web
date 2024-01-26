@@ -70,9 +70,12 @@ td{
 	width: 100px;
 	display: inline-block;
 	text-align: center;
+	color: gray;
 }
 .member-lists ul li:hover {
 	background-color: skyblue;
+	color: black;
+	font-weight: bold;
 }
 
 
