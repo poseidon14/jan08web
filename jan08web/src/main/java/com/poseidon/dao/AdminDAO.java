@@ -11,15 +11,16 @@ import com.poseidon.dto.MemberDTO;
 
 public class AdminDAO extends AbstractDAO {
 
-	public List<MemberDTO> memberList() {
+	public List<MemberDTO> memberList(int grade) {
 		List<MemberDTO> list = new ArrayList<MemberDTO>();
 		Connection con = db.getConnection();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "SELECT mno, mid, mname, mdate, mgrade FROM member";
+		String sql = "SELECT mno, mid, mname, mdate, mgrade FROM member WHERE mgrade=?";
 
 		try {
 			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, grade);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				MemberDTO e = new MemberDTO();
