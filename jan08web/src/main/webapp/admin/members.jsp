@@ -39,12 +39,28 @@
 					</thead>
 					<tbody>
 						<c:forEach items="${list }" var="row">
-						<tr>
+						<tr class="row${row.mgrade }">
 							<td class="d1">${row.mno }</td>
 							<td class="title">${row.mid }</td>
 							<td class="d1">${row.mname }</td>
 							<td class="d2">${row.mdate }</td>
-							<td class="d1">${row.mgrade }</td>
+							<td class="d1">
+								<select>
+									<optgroup label="정지">
+										<option <c:if test="${row.mgrade eq 0}">selected="selected"</c:if> >0 강퇴</option>
+										<option <c:if test="${row.mgrade eq 1}">selected="selected"</c:if> >1 탈퇴</option>
+										<option <c:if test="${row.mgrade eq 2}">selected="selected"</c:if> >2 정지</option>
+									</optgroup>
+									<optgroup label="정상">
+										<option <c:if test="${row.mgrade eq 5}">selected="selected"</c:if> >5 평민</option>
+									</optgroup>
+									<optgroup label="관리자">								
+										<option <c:if test="${row.mgrade eq 9}">selected="selected"</c:if> >9 관리자</option>
+									</optgroup>
+								</select>
+							${row.mgrade }
+							
+							</td>
 						</tr>
 						</c:forEach>
 					</tbody>
