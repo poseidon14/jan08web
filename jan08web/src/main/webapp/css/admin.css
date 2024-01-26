@@ -1,0 +1,44 @@
+@charset "UTF-8";
+body{
+	margin: 0;
+	padding: 0;	
+}
+
+.wrap{
+	width: 100%;
+	height: 100vh;
+	display: flex;
+}
+.menu{
+	width: 150px;
+	height: 100vh;
+	background-color: gray;
+}
+.main{
+	width: calc(100% - 150px);
+	height: 100vh;
+	/* background-color: yellow; */
+}
+
+nav{
+	margin-top: 50px;
+}
+
+nav ul{
+	margin:0;
+	padding:0;
+	list-style: none;
+}
+nav > ul > li{
+	margin:0;
+	padding:0;
+	margin: 5px 10px;
+	padding: 10px 0px;
+	text-align: center;
+}
+nav > ul > li:hover {
+	background-color: #ffffff;
+}
+
+
+
