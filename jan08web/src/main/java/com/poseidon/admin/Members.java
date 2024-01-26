@@ -23,10 +23,15 @@ public class Members extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println(request.getParameter("grade"));
+		//System.out.println(request.getParameter("grade"));
 		
 		AdminDAO dao = new AdminDAO();
-		List<MemberDTO> list = dao.memberList(Util.str2Int(request.getParameter("grade")));
+		List<MemberDTO> list = null;
+		if(request.getParameter("grade") != null) {
+			list = dao.memberList(Util.str2Int(request.getParameter("grade")));
+		} else {
+			list = dao.memberList();			
+		}
 		
 		request.setAttribute("list", list);
 		RequestDispatcher rd = request.getRequestDispatcher("/admin/members.jsp");
