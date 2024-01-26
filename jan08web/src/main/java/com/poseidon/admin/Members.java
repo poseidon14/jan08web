@@ -42,9 +42,13 @@ public class Members extends HttpServlet {
 		//db에 변경
 		AdminDAO dao = new AdminDAO();
 		int result = dao.memberUpdate(Util.str2Int(request.getParameter("grade")), Util.str2Int(request.getParameter("mno")));
-		System.out.println(result);
+		//System.out.println(result);
 		//페이지 이동
-		response.sendRedirect("./members?grade=" + request.getParameter("currentgrade"));
+		if(request.getParameter("currentgrade") == null) {			
+			response.sendRedirect("./members");
+		}else {
+			response.sendRedirect("./members?grade=" + request.getParameter("currentgrade"));
+		}
 		
 	}
 

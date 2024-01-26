@@ -23,7 +23,9 @@ $(function (){
 		form.attr('action', './members');
 		form.append($('<input/>', {type : 'hidden', name : 'mno', value : mno}));
 		form.append($('<input/>', {type : 'hidden', name : 'grade', value : val}));
+		<c:if test="${param.grade ne null}">
 		form.append($('<input/>', {type : 'hidden', name : 'currentgrade', value : ${param.grade}}));
+		</c:if>
 		form.appendTo('body');
 		form.submit();
 	});
