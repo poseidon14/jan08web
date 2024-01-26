@@ -39,15 +39,12 @@ public class Members extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//System.out.println(request.getParameter("mno"));
-		//System.out.println(request.getParameter("grade"));
-		
 		//db에 변경
 		AdminDAO dao = new AdminDAO();
 		int result = dao.memberUpdate(Util.str2Int(request.getParameter("grade")), Util.str2Int(request.getParameter("mno")));
 		System.out.println(result);
 		//페이지 이동
-		response.sendRedirect("./members");
+		response.sendRedirect("./members?grade=" + request.getParameter("currentgrade"));
 		
 	}
 

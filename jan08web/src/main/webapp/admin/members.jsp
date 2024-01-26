@@ -23,6 +23,7 @@ $(function (){
 		form.attr('action', './members');
 		form.append($('<input/>', {type : 'hidden', name : 'mno', value : mno}));
 		form.append($('<input/>', {type : 'hidden', name : 'grade', value : val}));
+		form.append($('<input/>', {type : 'hidden', name : 'currentgrade', value : ${param.grade}}));
 		form.appendTo('body');
 		form.submit();
 	});
