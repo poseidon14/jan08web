@@ -78,7 +78,6 @@ public class AdminDAO extends AbstractDAO {
 			pstmt.setInt(2, mno);
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			close(null, pstmt, con);

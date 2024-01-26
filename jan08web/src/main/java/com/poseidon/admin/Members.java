@@ -27,10 +27,10 @@ public class Members extends HttpServlet {
 		
 		AdminDAO dao = new AdminDAO();
 		List<MemberDTO> list = null;
-		if(request.getParameter("grade") != null) {
-			list = dao.memberList(Util.str2Int(request.getParameter("grade")));
-		} else {
+		if(request.getParameter("grade") == null || request.getParameter("grade").equals("")) {
 			list = dao.memberList();			
+		} else {
+			list = dao.memberList(Util.str2Int(request.getParameter("grade")));
 		}
 		
 		request.setAttribute("list", list);
@@ -44,7 +44,7 @@ public class Members extends HttpServlet {
 		int result = dao.memberUpdate(Util.str2Int(request.getParameter("grade")), Util.str2Int(request.getParameter("mno")));
 		//System.out.println(result);
 		//페이지 이동
-		if(request.getParameter("currentgrade") == null) {			
+		if(request.getParameter("currentgrade") == null || request.getParameter("currentgrade").equals("")) {			
 			response.sendRedirect("./members");
 		}else {
 			response.sendRedirect("./members?grade=" + request.getParameter("currentgrade"));
