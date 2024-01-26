@@ -47,6 +47,16 @@ $(function (){
 		<div class="main">
 			<article>
 				<h2>회원관리</h2>
+				<div class="member-lists">
+					<ul>
+						<li onclick="('./members?grade=0')"><i class="xi-close-circle-o"></i> 탈퇴</li>
+						<li onclick="('./members?grade=1')"><i class="xi-minus-circle-o"></i> 강퇴</li>
+						<li onclick="('./members?grade=2')"><i class="xi-check-circle-o"></i> 정지</li>
+						<li onclick="('./members?grade=5')"><i class="xi-label-o"></i> 정상</li>
+						<li onclick="('./members?grade=9')"><i class="xi-plus-square-o"></i> 관리자</li>					
+					</ul>
+				</div>
+				
 				<table>
 					<thead>
 					<tr>

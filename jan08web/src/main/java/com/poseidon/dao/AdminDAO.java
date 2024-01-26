@@ -38,4 +38,24 @@ public class AdminDAO extends AbstractDAO {
 		return list;
 	}
 
+	public int memberUpdate(int grade, int mno) {
+		Connection con = db.getConnection();
+		PreparedStatement pstmt = null;
+		String sql = "UPDATE member SET mgrade=? WHERE mno=?";
+		int result = 0;
+
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, grade);
+			pstmt.setInt(2, mno);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(null, pstmt, con);
+		}
+		return result;
+	}
+
 }
