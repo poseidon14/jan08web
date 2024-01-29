@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <title>관리자 페이지</title>
-<link href="../css/admin.css?ver=0.12" rel="stylesheet"/>
+<link href="../css/admin.css" rel="stylesheet"/>
 <script type="text/javascript" src="../js/menu.js"></script>
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
 </head>

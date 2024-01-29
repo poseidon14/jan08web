@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>관리자 페이지</title>
+<title>관리자 페이지 - 사용자 관리</title>
 <link href="../css/admin.css?ver=0.14" rel="stylesheet"/>
 <link href="../css/member.css" rel="stylesheet"/>
 <script type="text/javascript" src="../js/menu.js"></script>
