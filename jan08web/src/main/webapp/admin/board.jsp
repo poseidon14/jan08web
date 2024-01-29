@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>관리자 페이지 - 게시글 관리</title>
 <link href="../css/admin.css?ver=0.14" rel="stylesheet"/>
-<link href="../css/member.css?ver=0.00001" rel="stylesheet"/>
+<link href="../css/adminBoard.css?ver=0.00002" rel="stylesheet"/>
 <script type="text/javascript" src="../js/menu.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
@@ -32,14 +32,14 @@
 					<tbody>
 						<c:forEach items="${list }" var="row">
 						<tr class="row${row.del }">
-							<td>${row.no }</td>
-							<td>${row.title }
+							<td class="d1">${row.no }</td>
+							<td class="title">${row.title }
 							<c:if test="${row.comment ne 0}"> <small>${row.comment }</small></c:if>
 							</td>
-							<td>${row.write }</td>
-							<td>${row.date }</td>
-							<td>${row.count }</td>
-							<td>${row.del }</td>
+							<td class="d2">${row.write }</td>
+							<td class="d2">${row.date }</td>
+							<td class="d1">${row.count }</td>
+							<td class="d1">${row.del }</td>
 						</tr>
 						</c:forEach>
 					</tbody>
