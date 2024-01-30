@@ -56,7 +56,11 @@ $(function(){
 							<td class="d2">${row.date }</td>
 							<td class="d1">${row.ip }</td>
 							<td class="d1">${row.count }</td>
-							<td class="d1">${row.del }</td>
+							<td class="d1">
+							<i class="xi-eye"></i>
+							<i class="xi-eye-off-o"></i>
+							${row.del }
+							</td>
 						</tr>
 						</c:forEach>
 					</tbody>

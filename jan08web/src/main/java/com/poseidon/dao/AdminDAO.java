@@ -93,11 +93,8 @@ public class AdminDAO extends AbstractDAO {
 		ResultSet rs = null;
 		String sql = "SELECT board_no, board_title, board_date, board_ip, board_del, "
 				+ " (SELECT count(*) FROM visitcount v WHERE v.board_no=b.board_no) as count,"
-				+ " (SELECT count(*) FROM comment c WHERE c.board_no=b.board_no) as comment, "
-				+ " m.mname "
-				+ " FROM board b"
-				+ " JOIN member m ON b.mno=m.mno"
-				+ " ORDER BY board_no DESC";
+				+ " (SELECT count(*) FROM comment c WHERE c.board_no=b.board_no) as comment, " + " m.mname "
+				+ " FROM board b" + " JOIN member m ON b.mno=m.mno" + " ORDER BY board_no DESC";
 
 		try {
 			pstmt = con.prepareStatement(sql);
@@ -112,7 +109,7 @@ public class AdminDAO extends AbstractDAO {
 				e.setCount(rs.getInt("count")); // ? visitcount에서 옵니다.
 				e.setComment(rs.getInt("comment"));// ? 댓글에서 옵니다.
 				e.setIp(rs.getString("board_ip"));
-				e.setDel(rs.getInt("board_del"));//만들어주세요.
+				e.setDel(rs.getInt("board_del"));// 만들어주세요.
 				list.add(e);
 			}
 
@@ -132,10 +129,8 @@ public class AdminDAO extends AbstractDAO {
 		String sql = "SELECT board_no, board_title, board_date, board_ip, board_del, "
 				+ " (SELECT count(*) FROM visitcount v WHERE v.board_no=b.board_no) as count,"
 				+ " (SELECT count(*) FROM comment c WHERE c.board_no=b.board_no) as comment, m.mname "
-				+ " FROM board b JOIN member m ON b.mno=m.mno"
-				+ " WHERE board_title LIKE CONCAT('%', ?, '%')"
-				+ "	OR board_content LIKE CONCAT('%', ?, '%')"
-				+ " OR mname LIKE CONCAT('%', ?, '%')"
+				+ " FROM board b JOIN member m ON b.mno=m.mno" + " WHERE board_title LIKE CONCAT('%', ?, '%')"
+				+ "	OR board_content LIKE CONCAT('%', ?, '%')" + " OR mname LIKE CONCAT('%', ?, '%')"
 				+ " ORDER BY board_no DESC";
 
 		try {
@@ -154,7 +149,7 @@ public class AdminDAO extends AbstractDAO {
 				e.setCount(rs.getInt("count")); // ? visitcount에서 옵니다.
 				e.setComment(rs.getInt("comment"));// ? 댓글에서 옵니다.
 				e.setIp(rs.getString("board_ip"));
-				e.setDel(rs.getInt("board_del"));//만들어주세요.
+				e.setDel(rs.getInt("board_del"));// 만들어주세요.
 				list.add(e);
 			}
 
