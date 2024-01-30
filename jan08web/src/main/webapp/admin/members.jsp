@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>관리자 페이지 - 사용자 관리</title>
-<link href="../css/admin.css?ver=0.14" rel="stylesheet"/>
+<link href="../css/admin.css?ver=0.17" rel="stylesheet"/>
 <link href="../css/member.css" rel="stylesheet"/>
 <script type="text/javascript" src="../js/menu.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -40,14 +40,18 @@ $(function (){
 		<div class="main">
 			<article>
 				<h2>회원관리</h2>
-				<div class="member-lists">
-					<ul>
-						<li onclick="url('./members?grade=0')"><i class="xi-close-circle-o"></i> 탈퇴</li>
-						<li onclick="url('./members?grade=1')"><i class="xi-minus-circle-o"></i> 강퇴</li>
-						<li onclick="url('./members?grade=2')"><i class="xi-check-circle-o"></i> 정지</li>
-						<li onclick="url('./members?grade=5')"><i class="xi-label-o"></i> 정상</li>
-						<li onclick="url('./members?grade=9')"><i class="xi-plus-square-o"></i> 관리자</li>					
+				<div class="nav-lists">
+					<ul class="nav-lists-group">
+						<li class="nav-lists-item" onclick="url('./members?grade=0')"><i class="xi-close-circle-o"></i> 탈퇴</li>
+						<li class="nav-lists-item" onclick="url('./members?grade=1')"><i class="xi-minus-circle-o"></i> 강퇴</li>
+						<li class="nav-lists-item" onclick="url('./members?grade=2')"><i class="xi-check-circle-o"></i> 정지</li>
+						<li class="nav-lists-item" onclick="url('./members?grade=5')"><i class="xi-label-o"></i> 정상</li>
+						<li class="nav-lists-item" onclick="url('./members?grade=9')"><i class="xi-plus-square-o"></i> 관리자</li>					
 					</ul>
+					<div class="search">
+						<input type="text" id="search">
+						<button id="searchBtn">검색</button>
+					</div>
 				</div>
 				
 				<table>

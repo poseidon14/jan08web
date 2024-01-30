@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.poseidon.dto.BoardDTO;
+import com.poseidon.dto.CommentDTO;
 import com.poseidon.dto.MemberDTO;
 
 public class AdminDAO extends AbstractDAO {
@@ -178,6 +179,45 @@ public class AdminDAO extends AbstractDAO {
 			close(null, pstmt, con);
 		}
 		return result;
+	}
+
+	public List<CommentDTO> commentList() {
+		List<CommentDTO> list = new ArrayList<CommentDTO>();
+		Connection con = db.getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "select c.cno, c.board_no, SUBSTRING(REPLACE(c.ccomment, '<br>', ' '),1, 15) as ccomment, "
+				+ "if(date_format(c.cdate,'%Y-%m-%d') = date_format(current_timestamp(),'%Y-%m-%d'), "
+				+ "date_format(c.cdate,'%h:%i'),date_format(c.cdate,'%Y-%m-%d')) AS cdate, "
+				+ "c.clike, m.mno, m.mid, m.mname, c.cip , c.cdel "
+				+ "from (comment c join member m on(c.mno = m.mno)) "
+				+ "order by c.cno desc";
+
+		try {
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				CommentDTO e = new CommentDTO();
+				e.setCno(rs.getInt("cno"));
+				e.setBoard_no(rs.getInt("board_no"));
+				e.setComment(rs.getString("ccomment"));
+				e.setCdate(rs.getString("cdate"));
+				e.setClike(rs.getInt("clike"));
+				e.setMno(rs.getInt("mno"));
+				e.setMname(rs.getString("mname"));
+				e.setMid(rs.getString("mid"));
+				e.setIp(rs.getString("cip"));
+				e.setDel(rs.getInt("cdel"));
+				list.add(e);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs, pstmt, con);
+		}
+		return list;
 	}
 
 }

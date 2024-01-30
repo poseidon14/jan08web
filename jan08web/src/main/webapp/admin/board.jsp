@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>관리자 페이지 - 게시글 관리</title>
-<link href="../css/admin.css?ver=0.14" rel="stylesheet" />
+<link href="../css/admin.css?ver=0.15" rel="stylesheet" />
 <link href="../css/adminBoard.css?ver=0.00002" rel="stylesheet" />
 <script type="text/javascript" src="../js/menu.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -58,9 +58,15 @@
 		<div class="main">
 			<article>
 				<h2>게시글 관리</h2>
-				<div class="search">
-					<input type="text" id="search">
-					<button id="searchBtn">검색</button>
+				<div class="nav-lists">
+					<ul class="nav-lists-group">
+						<li class="nav-lists-item" onclick="url('./board?del=1')"><i class="xi-close-circle-o"></i> 보임</li>					
+						<li class="nav-lists-item" onclick="url('./board?del=0')"><i class="xi-close-circle-o"></i> 숨김</li>					
+					</ul>
+					<div class="search">
+						<input type="text" id="search">
+						<button id="searchBtn">검색</button>
+					</div>
 				</div>
 				<table>
 					<thead>
