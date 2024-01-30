@@ -22,10 +22,11 @@ public class Board extends HttpServlet {
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		System.out.println("search : " + request.getParameter("search"));
+		
 		//데이터 
 		AdminDAO dao = new AdminDAO();
-		List<BoardDTO> list = dao.boardList();
+		List<BoardDTO> list = dao.boardList(request.getParameter("search"));
 		
 		request.setAttribute("list", list);
 		
