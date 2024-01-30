@@ -1,6 +1,7 @@
 package com.poseidon.admin;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.poseidon.dao.AdminDAO;
 import com.poseidon.dto.BoardDTO;
+import com.poseidon.util.Util;
 
 @WebServlet("/admin/board")
 public class Board extends HttpServlet {
@@ -22,7 +24,7 @@ public class Board extends HttpServlet {
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("search : " + request.getParameter("search"));
+		//System.out.println("search : " + request.getParameter("search"));
 		
 		//데이터 
 		AdminDAO dao = new AdminDAO();
@@ -40,7 +42,18 @@ public class Board extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		//System.out.println(request.getParameter("no"));
+		//System.out.println(request.getParameter("del"));
+		
+		AdminDAO dao = new AdminDAO();
+		BoardDTO dto = new BoardDTO();
+		dto.setNo(Util.str2Int(request.getParameter("no")));
+		dto.setDel(Util.str2Int(request.getParameter("del")) == 1 ? 0 : 1); //ternary operator
+		
+		int result = dao.boardDel(dto);
+		
+		PrintWriter pw = response.getWriter();
+		pw.print(result);
 	}
 
 }
