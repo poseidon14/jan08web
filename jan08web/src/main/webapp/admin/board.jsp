@@ -28,15 +28,19 @@
 				dataType : 'text',
 				data     : {'no' : no, 'del' : del.val()},
 				success  : function(result){
-					if(del.val() == 1){ // 1 -> 0
-						className.attr('class','row0'); //className.css('backgroundColor', '#FFDC46');
-						del.val(0);
-						eyes.attr('class','xi-eye-off-o changeDel');
-						
-					} else { // 0 -> 1
-						className.attr('class','row1'); //className.css('backgroundColor', '#ffffff');
-						del.val(1);
-						eyes.attr('class','xi-eye changeDel');
+					if(result == 1){
+						if(del.val() == 1){ // 1 -> 0
+							className.attr('class','row0'); //className.css('backgroundColor', '#FFDC46');
+							del.val(0);
+							eyes.attr('class','xi-eye-off-o changeDel');
+							
+						} else { // 0 -> 1
+							className.attr('class','row1'); //className.css('backgroundColor', '#ffffff');
+							del.val(1);
+							eyes.attr('class','xi-eye changeDel');
+						}						
+					} else {
+						alert("문제가 발생했습니다");
 					}
 				},
 				error    : function(error){
