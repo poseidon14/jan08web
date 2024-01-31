@@ -250,6 +250,36 @@ public class AdminDAO extends AbstractDAO {
 		}
 		return list;
 	}
+	public List<Map<String, Object>> ipList(String ip) {
+		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
+		Connection con = db.getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT ino, iip, idate, iurl, idata FROM iplog WHERE iip=? ORDER BY ino DESC ";
+
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, ip);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				Map<String, Object> e = new HashMap<String, Object>();
+				e.put("ino", rs.getInt("ino"));
+				e.put("iip", rs.getString("iip"));
+				e.put("idate", rs.getString("idate"));
+				e.put("iurl", rs.getString("iurl"));
+				e.put("idata", rs.getString("idata"));
+				list.add(e);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs, pstmt, con);
+		}
+		return list;
+	}
+	
 	//가장 많이 접속한 ip - 2024-01-31 - 프레임워크 프로그래밍
 	public List<Map<String, Object>> mostConnectedIP5() {
 		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();

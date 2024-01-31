@@ -23,24 +23,26 @@ public class Ip extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println(request.getParameter("ip"));
+		//System.out.println(request.getParameter("ip"));
 		
 		AdminDAO dao = new AdminDAO();
 		
 		request.setAttribute("list1", dao.mostConnectedIP5());
 		request.setAttribute("list2", dao.latestAccessIP10());
-				
-		List<Map<String, Object>> list = dao.ipList();
-		request.setAttribute("list", list);
+		List<Map<String, Object>> list = null;	
+
+		if(request.getParameter("ip") != null && !request.getParameter("ip").equals("")) {
+			list = dao.ipList(request.getParameter("ip"));
+		} else {
+			list = dao.ipList();
+		}
 		
-		
+		request.setAttribute("list", list);	
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/admin/ip.jsp");//파일 있는 경로
 		rd.forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//doGet(request, response);
 	}
-
 }

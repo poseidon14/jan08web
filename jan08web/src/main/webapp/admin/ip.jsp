@@ -43,7 +43,8 @@ function drawChart() {
 				2. 그래프 그리기 - 구글차트 - ip당 접속 건수 - 10개? -->
 				<hr>
 				<h2>가장 많이 접속한 IP</h2>
-				<table>
+				<div style="height: 300px; width: 100%;">
+				<table style="width: 500px; float: left">
 					<c:forEach items="${list1 }" var="row">
 					<tr>
 						<td>${row.iip }</td>
@@ -52,7 +53,8 @@ function drawChart() {
 					</c:forEach>
 				</table>
 				<!-- 그래프로 그리기 -->
-				<div id="piechart" style="width: 100%; height: 500px;"></div>
+				<div id="piechart" style="width: 500px; height: 300px; float: right;"></div>
+				</div>
 				<hr>
 				<h2>가장 최근에 접속한 IP</h2>
 				<table>
@@ -73,6 +75,7 @@ function drawChart() {
 						<input type="text" id="search">
 						<button id="searchBtn">검색</button>
 					</div>
+					<button onclick="location.href='./ip'">초기화</button>
 				</div>
 				<table>
 					<thead>
