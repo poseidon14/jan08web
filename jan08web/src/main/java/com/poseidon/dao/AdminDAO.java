@@ -250,5 +250,62 @@ public class AdminDAO extends AbstractDAO {
 		}
 		return list;
 	}
+	//가장 많이 접속한 ip - 2024-01-31 - 프레임워크 프로그래밍
+	public List<Map<String, Object>> mostConnectedIP5() {
+		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
+		Connection con = db.getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT iip, COUNT(*) AS count "
+				+ "FROM iplog "
+				+ "GROUP BY iip "
+				+ "ORDER BY count DESC LIMIT 0, 5";
+
+		try {
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				Map<String, Object> e = new HashMap<String, Object>();
+				e.put("iip", rs.getString("iip"));
+				e.put("count", rs.getString("count"));
+				list.add(e);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs, pstmt, con);
+		}
+		return list;
+	}
+	//가장 최근에 접속한 IP 2024-01-31
+	public List<Map<String, Object>> latestAccessIP10() {
+		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
+		Connection con = db.getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT iip, idate "
+				+ "FROM (SELECT DISTINCT iip, idate FROM iplog ORDER BY idate DESC) AS t "
+				+ "GROUP BY t.iip ORDER BY idate DESC LIMIT 0, 10";
+
+		try {
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				Map<String, Object> e = new HashMap<String, Object>();
+				e.put("iip", rs.getString("iip"));
+				e.put("idate", rs.getString("idate"));
+				list.add(e);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs, pstmt, con);
+		}
+		return list;
+	}
 
 }

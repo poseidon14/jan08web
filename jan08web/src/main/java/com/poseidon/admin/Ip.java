@@ -24,9 +24,17 @@ public class Ip extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		AdminDAO dao = new AdminDAO();
-		List<Map<String, Object>> list = dao.ipList();
 		
+		List<Map<String, Object>> list1 = dao.mostConnectedIP5();
+		request.setAttribute("list1", list1);
+		
+		List<Map<String, Object>> list2 = dao.latestAccessIP10();
+		request.setAttribute("list2", list2);
+		
+		List<Map<String, Object>> list = dao.ipList();
 		request.setAttribute("list", list);
+		
+		
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/admin/ip.jsp");//파일 있는 경로
 		rd.forward(request, response);
