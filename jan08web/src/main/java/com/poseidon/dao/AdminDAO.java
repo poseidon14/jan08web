@@ -5,7 +5,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.poseidon.dto.BoardDTO;
 import com.poseidon.dto.CommentDTO;
@@ -209,6 +211,35 @@ public class AdminDAO extends AbstractDAO {
 				e.setMid(rs.getString("mid"));
 				e.setIp(rs.getString("cip"));
 				e.setDel(rs.getInt("cdel"));
+				list.add(e);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs, pstmt, con);
+		}
+		return list;
+	}
+
+	public List<Map<String, Object>> ipList() {
+		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
+		Connection con = db.getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT ino, iip, idate, iurl, idata FROM iplog ORDER BY ino DESC ";
+
+		try {
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				Map<String, Object> e = new HashMap<String, Object>();
+				e.put("ino", rs.getInt("ino"));
+				e.put("iip", rs.getString("iip"));
+				e.put("idate", rs.getString("idate"));
+				e.put("iurl", rs.getString("iurl"));
+				e.put("idata", rs.getString("idata"));
 				list.add(e);
 			}
 

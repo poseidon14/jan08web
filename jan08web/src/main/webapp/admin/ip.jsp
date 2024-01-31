@@ -17,11 +17,12 @@
 		<%@ include file="menu.jsp" %>
 		<div class="main">
 			<article>
-				<h2>댓글관리</h2>
+				<h2>IP관리</h2>
+				{iip=172.30.1.70, idate=2024-01-31 09:14:12, idata=null, iurl=./index, ino=1245}
 				<div class="nav-lists">
 					<ul class="nav-lists-group">
-						<li class="nav-lists-item" onclick="url('./comments?del=1')"><i class="xi-close-circle-o"></i> 보임</li>					
-						<li class="nav-lists-item" onclick="url('./comments?del=0')"><i class="xi-close-circle-o"></i> 숨김</li>					
+						<li class="nav-lists-item" onclick="url('./ip?del=1')"><i class="xi-close-circle-o"></i> 보임</li>					
+						<li class="nav-lists-item" onclick="url('./ip?del=0')"><i class="xi-close-circle-o"></i> 숨김</li>					
 					</ul>
 					<div class="search">
 						<input type="text" id="search">
