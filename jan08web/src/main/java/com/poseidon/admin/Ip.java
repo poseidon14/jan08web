@@ -23,14 +23,13 @@ public class Ip extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println(request.getParameter("ip"));
+		
 		AdminDAO dao = new AdminDAO();
 		
-		List<Map<String, Object>> list1 = dao.mostConnectedIP5();
-		request.setAttribute("list1", list1);
-		
-		List<Map<String, Object>> list2 = dao.latestAccessIP10();
-		request.setAttribute("list2", list2);
-		
+		request.setAttribute("list1", dao.mostConnectedIP5());
+		request.setAttribute("list2", dao.latestAccessIP10());
+				
 		List<Map<String, Object>> list = dao.ipList();
 		request.setAttribute("list", list);
 		

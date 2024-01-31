@@ -16,16 +16,13 @@ google.charts.load('current', {'packages':['corechart']});
 google.charts.setOnLoadCallback(drawChart);
 
 function drawChart() {
-
   var data = google.visualization.arrayToDataTable([
-    ['ip', '접속수'],
-    <c:forEach items="${list1 }" var="row">
-    ['${row.iip}', ${row.count}],
-    </c:forEach>
+    ['ip', '접속수'],<c:forEach items="${list1 }" var="row">
+    ['${row.iip}', ${row.count}],</c:forEach>
   ]);
 
   var options = {
-    title: '꼭 해보셔야 해요'
+    title: '접속 ip 비율'
   };
 
   var chart = new google.visualization.PieChart(document.getElementById('piechart'));
@@ -41,10 +38,9 @@ function drawChart() {
 		<div class="main">
 			<article>
 				<h2>IP관리</h2>
-				0. 중복없이 ip리스트 뽑기는?
+<!-- 				0. 중복없이 ip리스트 뽑기는?
 				1. 최다 접속 ip 5개 출력 - ip, 접속수
-				2. 그래프 그리기 - 구글차트 - ip당 접속 건수 - 10개?
-				
+				2. 그래프 그리기 - 구글차트 - ip당 접속 건수 - 10개? -->
 				<hr>
 				<h2>가장 많이 접속한 IP</h2>
 				<table>
@@ -92,7 +88,7 @@ function drawChart() {
 						<c:forEach items="${list }" var="row">
 							<tr class="row">
 								<td class="d1">${row.ino }</td>
-								<td class="d1">${row.iip }</td>
+								<td class="d1"><a href="./ip?ip=${row.iip }">${row.iip }</a></td>
 								<td class="d2">${row.idate }</td>
 								<td class="d1">${row.iurl }</td>
 								<td class="title">${row.idata }</td>
