@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<meta charset="UTF-8"> 
 <title>temp</title>
 <link href="./css/index.css" rel="stylesheet"/>
 <link href="./css/menu.css" rel="stylesheet"/>

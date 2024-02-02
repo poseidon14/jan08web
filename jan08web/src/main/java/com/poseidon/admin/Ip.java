@@ -39,7 +39,7 @@ public class Ip extends HttpServlet {
 		
 		request.setAttribute("list", list);	
 		
-		RequestDispatcher rd = request.getRequestDispatcher("/admin/ip.jsp");//파일 있는 경로
+		RequestDispatcher rd = request.getRequestDispatcher("/admin/index");//파일 있는 경로
 		rd.forward(request, response);
 	}
 
